@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS myconcertsDB;
+CREATE DATABASE myconcertsDB;

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concert Finder</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div id="img-head">
+        <h1 class="white-text">myConcerts</h1>
+      </div>
+    </header>
+
+   <div
+      class="valign-wrapper"
+      style="width: 100%; height: 100%; position: absolute"
+    >
+    <div class="row">
+      <div
+        class="card-container"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+      <div class="col m6">
+        <div class="card">
+          <div class="col s12">
+            <div class="card-title">
+              <h3 class="center-align">Login</h3>
+            </div>
+            <form class="form login-form">
+              <div class="form-group">
+                <label for="email-login">email:</label>
+                <input class="form-input" type="text" id="email-login" />
+              </div>
+              <div class="form-group">
+                <label for="password-login">password:</label>
+                <input class="form-input" type="password" id="password-login" />
+              </div>
+              <br>
+              <div class="form-group">
+                <button class="btn btn-info btn-block col s4 offset-s4" id="login-form" type="submit">login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col m6">
+        <div class="card">
+          <div class="col s12">
+            <div class="card-title">
+              <h3 class="center-align">Signup</h4>
+            </div>
+            <form class="form signup-form">
+              <div class="form-group">
+                <label for="email-signup">email:</label>
+                <input class="form-input" type="text" id="email-signup" />
+              </div>
+              <div class="form-group">
+                <label for="password-signup">password:</label>
+                <input
+                  class="form-input"
+                  type="password"
+                  id="password-signup"
+                />
+              </div>
+              <br>
+              <div class="form-group">
+                <a href="/dashboard.html" class="btn btn-info btn-block col s4 offset-s4" id="signup-btn" type="submit">signup</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  </body>
+</html>
+
+<script src="/assets/js/login.js"></script>
