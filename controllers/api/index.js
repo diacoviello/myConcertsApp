@@ -1,9 +1,9 @@
 const router = require("express").Router();
 
-// const homeRoutes = require("./home-routes");
+const userRoutes = require("./userRoutes");
 const eventRoutes = require("./eventRoutes");
 
-// router.use("/user", homeRoutes);
+router.use("/user", userRoutes);
 router.use("/event", eventRoutes);
 
 module.exports = router;
