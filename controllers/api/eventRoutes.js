@@ -39,6 +39,29 @@ router.get('/', async (req, res) => {
     } 
   });
 
+  router.get('/:id', async (req, res) => {
+    // find all categories
+    // be sure to include its associated Products
+    try {
+      const eventData = await Event.findOne({
+        // JOIN with travellers, using the Trip through table
+        where: {
+            id: req.params.id
+          }
+        
+      });
+  
+      if (!eventData) {
+        res.status(404).json({ message: 'No event found !' });
+        return;
+      }
+  
+      res.status(200).json(eventData);
+    } catch (err) {
+      res.status(500).json(err);
+    } 
+  });
+
 // router.put('/:id', withAuth, async (req, res) => {
 //   try {
 //     const [affectedRows] = await Event.update(req.body, {
@@ -75,8 +98,4 @@ router.delete('/:id', async (req, res) => {
       }
 });
 
-<<<<<<< HEAD
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> dd720e1295f36241256c44e5684e95a0595bbc65
