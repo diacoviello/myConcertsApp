@@ -1,17 +1,21 @@
 const User = require("./User");
 const Event = require("./Event");
+const Artist = require("./Artist");
 
-User.hasMany(Event, {
-  foreignKey: 'userId',
-  onDelete: 'CASCADE'
+User.belongsToMany(Artist, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: Event,
+    unique: false,
+  },
 });
 
-Event.belongsTo(User, {
-  foreignKey: 'userId',
-  onDelete: 'CASCADE'
+Artist.belongsToMany(User, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: Event,
+    unique: false,
+  },
 });
 
-module.exports = {
-  User,
-  Event,
-};
+module.exports = { User, Artist, Event };
