@@ -2,6 +2,9 @@ const router = require("express").Router();
 const { Event, User } = require("../models");
 const path = require("path");
 
+// app.use("/event", Event);
+// app.use("/user", User);
+
 router.get("/", async (req, res) => {
   console.log("GET /");
 
