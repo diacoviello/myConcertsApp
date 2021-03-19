@@ -3,8 +3,8 @@ const express = require("express");
 const session = require("express-session");
 // Initializes Sequelize with session store
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-// const homeRoutes = require("./controllers/home-routes");
-// const eventRoutes = require("./controllers/api/event-routes");
+const homeRoutes = require("./controllers/home-routes");
+const eventRoutes = require("./controllers/api/eventRoutes");
 // const userRoutes = require("./controllers/api/user-routes");
 const sequelize = require("./config/connection");
 const routes = require("./controllers");
@@ -34,9 +34,9 @@ app.use(session(sess));
 
 app.use(routes);
 
-// app.use("/api", eventRoutes);
+app.use("/api", eventRoutes);
 // app.use("/api", userRoutes);
-// app.use("/", homeRoutes);
+app.use("/", homeRoutes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
