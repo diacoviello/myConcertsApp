@@ -26,7 +26,19 @@ function printResults(resultObj) {
 
   // set up `<div>` to hold result content
   var resultCard = document.createElement("div");
-  resultCard.classList.add("card", "bg-light", "text-dark", "mb-3", "p-3");
+  resultCard.classList.add(
+    
+    "col",
+    "s2",
+    "card-panel",
+    "hoverable",
+    "light-blue", 
+    "darken-3",
+    "text-dark",
+    "mb-3",
+    "p-3",
+    
+  );
 
   var resultBody = document.createElement("div");
   resultBody.classList.add("card-body");
@@ -71,7 +83,7 @@ function printResults(resultObj) {
   var linkButtonEl = document.createElement("a");
   linkButtonEl.textContent = "Read More";
   linkButtonEl.setAttribute("href", resultObj.url);
-  linkButtonEl.classList.add("btn", "btn-dark");
+  linkButtonEl.classList.add("btn-large", "btn-dark");
 
   linkButtonEl.setAttribute("target", "_blank");
 
@@ -85,7 +97,7 @@ function printResults(resultObj) {
       resultObj.venue.longitude,
     "_blank"
   );
-  directionsBtn.classList.add("btn", "btn-dark");
+  directionsBtn.classList.add("btn-large", "btn-dark");
   directionsBtn.setAttribute("target", "_blank");
 
   resultContentEl.append(resultCard);
@@ -115,7 +127,7 @@ function printResults(resultObj) {
   rsvpBtn.textContent = "~*~ RSVP ~*~";
   //send event information to user's database
   // rsvpBtn.setAttribute("href", resultObj.url);
-  rsvpBtn.classList.add("btn", "btn-dark");
+  rsvpBtn.classList.add("btn-large", "btn-dark");
 
   resultBody.append(
     titleEl,

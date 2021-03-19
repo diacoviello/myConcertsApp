@@ -70,25 +70,26 @@ function searchApi(query) {
 
   fetch(locQueryUrl)
     .then(function (response) {
+      console.log(response);
       if (!response.ok) {
         throw response.json();
       }
       return response.json();
     })
 
-    fetch("/api/events", () => {
+    fetch("/api/event", () => {
         var venue = response.venue.name,
         var location = response.venue.location,
         var dateTime = response.datetime,
-        var artist = response.artist.name
+        var artist = response.artist.name,
     })
 
-    function updateDB(todo) {
+    function updateDB(event) {
     $.ajax({
       method: 'PUT',
-      url: '/api/events/' + ,
-      data: todo
-    }).then(getTodos);
+      url: '/api/events/:id',
+      data: event
+    }).then(getEvent);
   }
 
     .catch(function (error) {

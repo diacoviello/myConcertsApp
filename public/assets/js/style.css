@@ -1,14 +1,22 @@
+body {
+  background-color: #546e7a;
+  overflow: hidden;
+}
+
+.scroll-container {
+  overflow: hidden;
+}
+
 header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../images/MSG_SEA.jpg");
-  height: 300px;
+  height: 250px;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   justify-content: center;
-  margin-bottom: 25px;
   font-family: "Abril Fatface";
 }
 
@@ -18,12 +26,31 @@ header h1 {
   padding: 100px 0;
 }
 
-#artistImg {
-  margin-right: 15%;
-  margin-top: -2%;
+#logo {
+  display: inline;
+  color: white;
+  font-size: 35px;
+  padding: 10px;
 }
 
-#search-input {
+#login-href {
+  display: inline;
+  padding: 10px;
+}
+
+#subheader {
+  margin: 0px;
+}
+
+#addArtist {
+  padding: 15px;
+}
+
+#artistImg {
+  margin-right: 10%;
+}
+
+/* #search-input {
   margin-top: 20px;
 }
 
@@ -34,6 +61,10 @@ header h1 {
 
 #searchAgainBtn {
   margin-top: 25px;
+} */
+
+#upcoming-shows-card {
+  align-self: center;
 }
 
 body {
@@ -86,7 +117,3 @@ section:nth-child(2n) {
 section:nth-child(3n) {
   background-color: tomato;
 }
-
-
-
-Resources

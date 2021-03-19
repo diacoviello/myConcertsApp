@@ -13,16 +13,22 @@
       href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
       rel="stylesheet"
     />
+     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    
     <link rel="stylesheet" href="assets/js/style.css" />
   </head>
 
   <body>
 
     <header>
+      <a href="#" class="brand-logo" id="logo">myConcerts</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
             <a href="login-register.html" class="white-text" id="login-href"
@@ -30,58 +36,62 @@
             >
           </li>
         </ul>
-      <div id="img-head">
-        <h1 class="white-text">myConcerts</h1>
-      </div>
-        <div class="col s3 right-align">
-          <div class="artistCard" id="artistImg"></div>
-        </div>
+        <!-- <div id="img-head">
+            <h1 class="white-text">myConcerts</h1>
+        </div> -->
 
     </header>
         
-    <main class="container">
-      <div class="row">
-        <div class="card col s5 color blue" id="searchCard">
-          <form id="search-form">
-            <div class="section">
-            <input
-              id="search-input"
-              class="col s10 offset-s1 center-align"
-              type="text"
-              placeholder="Search for another band/artist"
-            />
-            </div>
-            <button id="searchAgainBtn" class="btn col s4 offset-s4">Search</button>
-          </form>
-        </div>
+    <main>
+      <div>
+        <div class="row" id="subheader">
+          <div class="card col s3 transparent" id="searchCard">
+            <form id="search-form">
+              <div class="section">
+                <input
+                id="search-input"
+                class="col s10 offset-s1 center-align"
+                type="text"
+                placeholder="Search for another band/artist"
+                required />
+              </div>
+              <button id="searchAgainBtn" class="btn col s4 offset-s4 color blue">Search</button>
+            </form>
+          </div>
       
-        <div id="upcoming-shows-txt" class="col s4">
-          <div class="col-12 col-md-9 p-3 text-light">
-            <h2 class="center-align">
-              Upcoming Shows: <p></p><span id="result-text"></span>
-            </h2>
-            <div class="center align" id="addArtist">
-              <button class="waves-effect waves-light btn-large blue darken-1">
-                Add to My Artists
-              </button>
+          <div class="card col s4 offset-s1 transparent" id="upcoming-shows-card">
+            <div  class="center-align">
+              <div class="col-12 col-md-9 p-3 text-light">
+                <h3>Upcoming Shows for <p><span id="result-text"><h2></h2></span></p></h3>
+                  <div class="center-align" id="addArtist">
+                    <button class="waves-effect waves-light btn-large blue darken-1">
+                    Add to My Artists
+                    </button>
+                  </div>
+              </div>
             </div>
           </div>
+
+          
+          <div class="col s3 offset-s1">
+            <div class="artistCard" id="artistImg"></div>
+          </div>
+
         </div>
       </div>
+    </main>
 
-
-            <br />
           <div class="scroll-container">
             <div class="bieber" id="result-content"></div>
           </div>
-        
+          
         <a
           href="../public/index.html"
           class="waves-effect waves-light btn btn-block btn-danger"
           >&larr; Go back.</a
         >
       </div>
-    </main>
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD-1NVl_YZVHBlWGXQUP5k899ykfBq4Do"></script>
     <script src="../config.js"></script>
     <script src="../assets/js/script.js"></script>
