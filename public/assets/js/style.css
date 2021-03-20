@@ -125,9 +125,9 @@ section:nth-child(3n) {
 }
 
 #card-img {
-    border: 1px solid #dddddd;
-    position: relative;
-  }
+  border: 1px solid #dddddd;
+  position: relative;
+}
 
 #main-container {
   align-content: center;
