@@ -27,17 +27,15 @@ function printResults(resultObj) {
   // set up `<div>` to hold result content
   var resultCard = document.createElement("div");
   resultCard.classList.add(
-    
     "col",
     "s2",
     "card-panel",
     "hoverable",
-    "light-blue", 
+    "light-blue",
     "darken-3",
     "text-dark",
     "mb-3",
-    "p-3",
-    
+    "p-3"
   );
 
   var resultBody = document.createElement("div");
@@ -123,11 +121,28 @@ function printResults(resultObj) {
     );
   }
 
+  function saveEvent() {
+    
+    fetch("/api/events", {
+      method: "POST",
+      body: {
+        artist: resultObj.artist.name,
+        venue: resultObj.venue.name,
+        location: resultObj.venue.location,
+        date: date,
+        time: time,
+        event_url: resultObj.url,
+      },
+    });
+  }
+
   var rsvpBtn = document.createElement("a");
   rsvpBtn.textContent = "~*~ RSVP ~*~";
   //send event information to user's database
   // rsvpBtn.setAttribute("href", resultObj.url);
   rsvpBtn.classList.add("btn-large", "btn-dark");
+  rsvpBtn.addEventListener("click", saveEvent);
+  console.log('its working!!!')
 
   resultBody.append(
     titleEl,
@@ -136,12 +151,11 @@ function printResults(resultObj) {
     directionsBtn,
     rsvpBtn
   );
-};
+}
 
 function loginRegisterReturn() {
   alert("You must be logged in to do that");
-
-} 
+}
 
 function searchApi(query) {
   artistCard.innerHTML = "";
@@ -175,7 +189,7 @@ function searchApi(query) {
         resultContentEl.innerHTML = "<h3>No results found, search again!</h3>";
       } else {
         resultContentEl.textContent = "";
-        for (var i = 0; i < locRes.length; i++) {
+        for (let i = 0; i < locRes.length; i++) {
           printResults(locRes[i]);
         }
       }

@@ -33,11 +33,6 @@ header h1 {
   padding: 10px;
 }
 
-#login-href {
-  display: inline;
-  padding: 10px;
-}
-
 #subheader {
   margin: 0px;
 }
@@ -48,6 +43,11 @@ header h1 {
 
 #artistImg {
   margin-right: 10%;
+}
+
+#card-reveal-text {
+  line-height: 2;
+  font-family: "Abril Fatface";
 }
 
 /* #search-input {
@@ -72,7 +72,6 @@ body {
   width: 100%;
 }
 
-
 .btn {
   margin-left: auto;
   margin-right: auto;
@@ -88,7 +87,6 @@ body {
   margin: auto;
   align-items: center;
 }
-
 
 .scroll-container {
   height: 100vh;
@@ -117,3 +115,4 @@ section:nth-child(2n) {
 section:nth-child(3n) {
   background-color: tomato;
 }
+

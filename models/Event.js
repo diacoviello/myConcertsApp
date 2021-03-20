@@ -1,4 +1,4 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // TODO: YOUR CODE HERE
@@ -28,18 +28,25 @@ Event.init(
       allowNull: false,
     },
     time: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     event_url: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
-        key: 'id',
+        model: "user",
+        key: "id",
+      },
+    },
+    artist_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "artist",
+        key: "id",
       },
     },
   },
@@ -48,7 +55,7 @@ Event.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'event',
+    modelName: "event",
   }
 );
 

@@ -3,19 +3,22 @@ const { Event } = require("../../models/");
 // const withAuth = require('../../utils/auth');
 
 router.post("/", async (req, res) => {
-  const body = req.body;
-
-  try {
-    const newPost = await Event.create({
-      // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
-      ...req.body,
-      //   user_id: req.session.user_id,
-      // TODO: SET USERID TO LOGGEDIN USERID
-    });
-    res.json(newPost);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+ Event.create({
+   // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
+   artist_name: req.body.artist_name,
+   venue_name: req.body.venue_name,
+   location: req.body.location,
+   date: req.body.date,
+   time: req.body.time,
+   event_url: req.body.event_url,
+   //   user_id: req.session.user_id,
+   // TODO: SET USERID TO LOGGEDIN USERID
+ })
+   .then((dbEventData) => res.json(dbEventData))
+   .catch((err) => {
+     console.log(err);
+     res.status(500).json(err);
+   });
 });
 
 router.get("/", async (req, res) => {
@@ -74,47 +77,3 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
-
-// ================================old stuff below
-
-// const router = require("express").Router();
-// const event = require("../../models");
-
-// router.get("/api/events", async (req, res) => {
-//   try {
-//     const eventData = await event.findAll({
-
-//     });
-//     res.status(200).json(eventData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// // CREATE a event
-// router.post("/", async (req, res) => {
-//   try {
-//     const eventData = await event.create(req.body);
-//     res.status(200).json(eventData);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
-
-// // DELETE a event
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const eventData = await event.destroy({
-//       where: { id: req.params.id },
-//     });
-//     if (!eventData) {
-//       res.status(404).json({ message: "No event with this id!" });
-//       return;
-//     }
-//     res.status(200).json(eventData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// module.exports = router;
