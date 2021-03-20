@@ -12,8 +12,8 @@ const routes = require("./controllers");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Sets up session and connect to our Sequelize db
@@ -29,10 +29,10 @@ const sess = {
   //   db: sequelize,
   // }),
 };
-
-app.use(session(sess));
-
 app.use(routes);
+// app.use(session(sess));
+
+
 
 app.use("/api", eventRoutes);
 app.use("/api", userRoutes);

@@ -52,14 +52,13 @@ header h1 {
 
 /* #search-input {
   margin-top: 20px;
+} */
+
+#reveal-card {
+  padding: 25px;
 }
 
-#searchCard {
-  margin-left: -20%;
-  margin-top: -2%;
-}
-
-#searchAgainBtn {
+/* #searchAgainBtn {
   margin-top: 25px;
 } */
 
@@ -82,11 +81,10 @@ body {
   text-align: center;
 }
 
-#search-form {
-  padding: 64 px;
+/* #search-form {
   margin: auto;
   align-items: center;
-}
+} */
 
 .scroll-container {
   height: 100vh;
@@ -116,3 +114,27 @@ section:nth-child(3n) {
   background-color: tomato;
 }
 
+#tag {
+  float: right;
+  position: absolute;
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+#card-img {
+    border: 1px solid #dddddd;
+    position: relative;
+  }
+
+#main-container {
+  align-content: center;
+  margin: auto;
+}
+
+#form-container {
+  align-content: center;
+  margin-top: -65px;
+}

@@ -24,20 +24,29 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  try {
-    const eventData = await Event.findAll({
-      // JOIN with travellers, using the Trip through table
-    });
+  Event.findAll({
 
-    if (!eventData) {
-      res.status(404).json({ message: "No event found !" });
-      return;
-    }
-
-    res.status(200).json(eventData);
-  } catch (err) {
+  })
+  .then((dbEventData) => res.json(dbEventData))
+  .catch((err) => {
+    console.log(err);
     res.status(500).json(err);
-  }
+  })
+
+  // try {
+  //   const eventData = await Event.findAll({
+  //     // JOIN with travellers, using the Trip through table
+  //   });
+
+  //   if (!eventData) {
+  //     res.status(404).json({ message: "No event found !" });
+  //     return;
+  //   }
+
+  //   res.status(200).json(eventData);
+  // } catch (err) {
+  //   res.status(500).json(err);
+  // }
 });
 
 // router.put('/:id', withAuth, async (req, res) => {

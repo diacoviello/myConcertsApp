@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-
+  console.log(req.body);
   try {
     const newUser = await User.create({
       // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
     res.json(newUser);
     
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

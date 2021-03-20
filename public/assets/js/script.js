@@ -133,6 +133,7 @@ function printResults(resultObj) {
         time: time,
         event_url: resultObj.url,
       },
+      console.log(body);
     });
   }
 
