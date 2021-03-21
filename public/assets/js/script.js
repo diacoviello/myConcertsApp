@@ -5,6 +5,7 @@ var resultContentEl = document.querySelector("#result-content");
 var searchFormEl = document.querySelector("#search-form");
 var dataLong = [];
 var dataLat = [];
+var RSVPEvent = { artist_name, location, venue_name, date, time, event_url };
 var artistCard = document.querySelector(".artistCard");
 
 function getParams() {
@@ -44,13 +45,17 @@ function printResults(resultObj) {
 
   var titleEl = document.createElement("h3");
   titleEl.textContent = resultObj.venue.name;
+  titleEl.setAttribute("class", "venue_name");
 
   var time = resultObj.datetime.slice(11, 16);
   console.log(time);
+  time.setAttribute("class", "event_time");
   var date = resultObj.datetime.slice(0, 10);
+  date.setAttribute("class", "event_date");
   console.log(date);
 
   var bodyContentEl = document.createElement("p");
+  bodyContentEl.setAttribute("class", "details");
   bodyContentEl.innerHTML =
     "<strong>Date: </strong> " +
     date +
@@ -81,7 +86,10 @@ function printResults(resultObj) {
   var linkButtonEl = document.createElement("a");
   linkButtonEl.textContent = "Read More";
   linkButtonEl.setAttribute("href", resultObj.url);
+  linkButtonEl.setAttribute("class", "eventUrl");
   linkButtonEl.classList.add("btn-large", "btn-dark");
+
+
 
   linkButtonEl.setAttribute("target", "_blank");
 
@@ -121,20 +129,33 @@ function printResults(resultObj) {
     );
   }
 
-  function saveEvent() {
-    
-    fetch("/api/events", {
-      method: "POST",
+  const saveEvent = async (event) => {
+    event.preventDefault();
+    // var artist_name: resultObj.artist.name,
+    var venue = $(this).siblings(".venue_name").val();
+    var location = $(this).siblings(".details").find(".eventUrl").val();
+    var date = $(this).siblings("event_date").val();
+    var time = $(this).siblings("event_time").val();
+    var eventUrl = $(this).siblings("eventUrl").val();
+    await fetch("/api/events", {
+      method: 'POST',
       body: {
-        artist: resultObj.artist.name,
-        venue: resultObj.venue.name,
-        location: resultObj.venue.location,
+        venue_name: venue,
         date: date,
         time: time,
-        event_url: resultObj.url,
-      },
-      console.log(body);
-    });
+      }
+
+    // fetch("/api/events", {
+    //   method: "POST",
+    //   body: {
+    //     artist_name: resultObj.artist.name,
+    //     location: resultObj.venue.location,
+    //     venue_name: resultObj.venue.name,
+    //     date: date,
+    //     time: time,
+    //     event_url: resultObj.url,
+    //   },
+    // });
   }
 
   var rsvpBtn = document.createElement("a");

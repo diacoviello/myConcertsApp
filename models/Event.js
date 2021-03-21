@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // TODO: YOUR CODE HERE
@@ -28,7 +28,7 @@ Event.init(
       allowNull: false,
     },
     time: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     event_url: {
