@@ -7,7 +7,7 @@ class Artist extends Model {}
 // create fields/columns for Artist model
 Artist.init(
   {
-    id: {
+    Artist_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
