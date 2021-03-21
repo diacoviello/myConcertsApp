@@ -24,7 +24,7 @@ Event.init(
       allowNull: false,
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     time: {
@@ -35,20 +35,20 @@ Event.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "user",
-        key: "id",
-      },
-    },
-    artist_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "artist",
-        key: "id",
-      },
-    },
+    // user_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "user",
+    //     key: "id",
+    //   },
+    // },
+    // artist_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "artist",
+    //     key: "id",
+    //   },
+    // },
   },
   {
     sequelize,

@@ -5,7 +5,6 @@ var resultContentEl = document.querySelector("#result-content");
 var searchFormEl = document.querySelector("#search-form");
 var dataLong = [];
 var dataLat = [];
-var RSVPEvent = { artist_name, location, venue_name, date, time, event_url };
 var artistCard = document.querySelector(".artistCard");
 
 function getParams() {
@@ -47,28 +46,28 @@ function printResults(resultObj) {
   titleEl.textContent = resultObj.venue.name;
   titleEl.setAttribute("class", "venue_name");
 
-  var time = resultObj.datetime.slice(11, 16);
-  console.log(time);
-  time.setAttribute("class", "event_time");
-  var date = resultObj.datetime.slice(0, 10);
-  date.setAttribute("class", "event_date");
-  console.log(date);
+  var showTime = resultObj.datetime.slice(11, 16);
+  console.log(showTime);
+  // showTime.setAttribute("class", "event_time");
+  var showDate = resultObj.datetime.slice(0, 10);
+  // showDate.setAttribute("class", "event_date");
+  console.log(showDate);
 
-  var bodyContentEl = document.createElement("p");
-  bodyContentEl.setAttribute("class", "details");
-  bodyContentEl.innerHTML =
-    "<strong>Date: </strong> " +
-    date +
-    "<br />" +
-    "<strong>Time: </strong>" +
-    time +
-    "<br />";
+  // var bodyContentEl = document.createElement("p");
+  var dateEl = document.createElement("p");
+  dateEl.setAttribute("class", "date-details");
+  dateEl.innerHTML = "<strong>Date: </strong> " + showDate + "<br />";  
+  var timeEl = document.createElement("p");
+  timeEl.setAttribute("class", "time-details");
+  timeEl.innerHTML = "<strong>Time: </strong>" + showTime + "<br />";
 
+  var locationEl = document.createElement("p");
+  locationEl.setAttribute("class", "loc-details");
   if (resultObj.venue.location) {
-    bodyContentEl.innerHTML +=
+    locationEl.innerHTML +=
       "<strong>Location:</strong> " + resultObj.venue.location + "<br/>"; //.join(', ') +
   } else {
-    bodyContentEl.innerHTML +=
+    locationEl.innerHTML +=
       "<strong>Subjects:</strong> No subject for this entry.";
   }
 
@@ -88,8 +87,6 @@ function printResults(resultObj) {
   linkButtonEl.setAttribute("href", resultObj.url);
   linkButtonEl.setAttribute("class", "eventUrl");
   linkButtonEl.classList.add("btn-large", "btn-dark");
-
-
 
   linkButtonEl.setAttribute("target", "_blank");
 
@@ -132,31 +129,28 @@ function printResults(resultObj) {
   const saveEvent = async (event) => {
     event.preventDefault();
     // var artist_name: resultObj.artist.name,
-    var venue = $(this).siblings(".venue_name").val();
-    var location = $(this).siblings(".details").find(".eventUrl").val();
-    var date = $(this).siblings("event_date").val();
-    var time = $(this).siblings("event_time").val();
+    var venue = $(this.resultBody).siblings(".venue_name").val();
+    console.log(venue);
+    var location = $(this).siblings("loc-details").val();
+    console.log(location)
+    var showDate = $(this).siblings("date-details").val();
+    console.log(showDate);
+    var showTime = $(this).siblings("time-details").val();
+    console.log(showTime);
     var eventUrl = $(this).siblings("eventUrl").val();
+    console.log(eventUrl);
     await fetch("/api/events", {
-      method: 'POST',
+      method: "POST",
       body: {
+        artist_name: "Joe",
+        location: location,
         venue_name: venue,
-        date: date,
-        time: time,
-      }
-
-    // fetch("/api/events", {
-    //   method: "POST",
-    //   body: {
-    //     artist_name: resultObj.artist.name,
-    //     location: resultObj.venue.location,
-    //     venue_name: resultObj.venue.name,
-    //     date: date,
-    //     time: time,
-    //     event_url: resultObj.url,
-    //   },
-    // });
-  }
+        date: showDate,
+        time: showTime,
+        event_url: eventUrl,
+      },
+    });
+  };
 
   var rsvpBtn = document.createElement("a");
   rsvpBtn.textContent = "~*~ RSVP ~*~";
@@ -164,11 +158,13 @@ function printResults(resultObj) {
   // rsvpBtn.setAttribute("href", resultObj.url);
   rsvpBtn.classList.add("btn-large", "btn-dark");
   rsvpBtn.addEventListener("click", saveEvent);
-  console.log('its working!!!')
+  console.log("its working!!!");
 
   resultBody.append(
     titleEl,
-    bodyContentEl,
+    dateEl,
+    timeEl,
+    locationEl,
     linkButtonEl,
     directionsBtn,
     rsvpBtn
