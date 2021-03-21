@@ -3,6 +3,8 @@ const { Event } = require("../../models/");
 // const withAuth = require('../../utils/auth');
 
 router.post("/", async (req, res) => {
+  const body = req.body
+
  Event.create({
    // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
    artist_name: req.body.artist_name,
@@ -24,29 +26,29 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  Event.findAll({
+  // Event.findAll({
 
-  })
-  .then((dbEventData) => res.json(dbEventData))
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  })
-
-  // try {
-  //   const eventData = await Event.findAll({
-  //     // JOIN with travellers, using the Trip through table
-  //   });
-
-  //   if (!eventData) {
-  //     res.status(404).json({ message: "No event found !" });
-  //     return;
-  //   }
-
-  //   res.status(200).json(eventData);
-  // } catch (err) {
+  // })
+  // .then((dbEventData) => res.json(dbEventData))
+  // .catch((err) => {
+  //   console.log(err);
   //   res.status(500).json(err);
-  // }
+  // })
+
+  try {
+    const eventData = await Event.findAll({
+      // JOIN with travellers, using the Trip through table
+    });
+
+    if (!eventData) {
+      res.status(404).json({ message: "No event found !" });
+      return;
+    }
+
+    res.status(200).json(eventData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // router.put('/:id', withAuth, async (req, res) => {
