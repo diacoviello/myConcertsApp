@@ -4,6 +4,7 @@ const { Event } = require("../../models/");
 
 router.post("/", async (req, res) => {
   const body = req.body
+  console.log(req.body);
 
  Event.create({
    // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD

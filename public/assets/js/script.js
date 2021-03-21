@@ -22,7 +22,10 @@ function getParams() {
 function printResults(resultObj) {
   console.log(resultObj);
 
-  resultTextEl.textContent = resultObj.lineup;
+  var artist = resultObj.artist.name;
+  console.log(artist);
+
+  resultTextEl.textContent = resultObj.artist.name;
 
   // set up `<div>` to hold result content
   var resultCard = document.createElement("div");
@@ -56,7 +59,7 @@ function printResults(resultObj) {
   // var bodyContentEl = document.createElement("p");
   var dateEl = document.createElement("p");
   dateEl.setAttribute("class", "date-details");
-  dateEl.innerHTML = "<strong>Date: </strong> " + showDate + "<br />";  
+  dateEl.innerHTML = "<strong>Date: </strong>" + showDate + "<br />";  
   var timeEl = document.createElement("p");
   timeEl.setAttribute("class", "time-details");
   timeEl.innerHTML = "<strong>Time: </strong>" + showTime + "<br />";
@@ -65,10 +68,10 @@ function printResults(resultObj) {
   locationEl.setAttribute("class", "loc-details");
   if (resultObj.venue.location) {
     locationEl.innerHTML +=
-      "<strong>Location:</strong> " + resultObj.venue.location + "<br/>"; //.join(', ') +
+      "Location:" + resultObj.venue.location + "<br/>"; //.join(', ') +
   } else {
     locationEl.innerHTML +=
-      "<strong>Subjects:</strong> No subject for this entry.";
+      "Subjects: No subject for this entry.";
   }
 
   var longRet = parseFloat(dataLong);
@@ -126,28 +129,41 @@ function printResults(resultObj) {
     );
   }
 
-  const saveEvent = async (event) => {
+  const saveEvent = async function() {
+  console.log(this);
+
     event.preventDefault();
-    // var artist_name: resultObj.artist.name,
-    var venue = $(this.resultBody).siblings(".venue_name").val();
+  
+    // console.log(artist);
+
+    var venue = $(this).siblings(".venue_name")[0].textContent;
     console.log(venue);
-    var location = $(this).siblings("loc-details").val();
-    console.log(location)
-    var showDate = $(this).siblings("date-details").val();
+    var location = $(this).siblings(".loc-details")[0].textContent;
+    console.log(location);
+    console.log($(this).siblings(".loc-details")[0].textContent);
+    var showDate = $(this).siblings(".date-details")[0].textContent;
     console.log(showDate);
-    var showTime = $(this).siblings("time-details").val();
+    var showTime = $(this).siblings(".time-details")[0].textContent;
     console.log(showTime);
-    var eventUrl = $(this).siblings("eventUrl").val();
+    var eventUrl = resultObj.url;
+    // var eventUrl = $(this).siblings(".eventUrl")[0];
     console.log(eventUrl);
+
+    var obj = {
+      artist_name: artist,
+      location: location,
+      venue_name: venue,
+      date: showDate,
+      time: showTime,
+      event_url: eventUrl,
+    };
+    console.log(obj);
+
     await fetch("/api/events", {
       method: "POST",
-      body: {
-        artist_name: "Joe",
-        location: location,
-        venue_name: venue,
-        date: showDate,
-        time: showTime,
-        event_url: eventUrl,
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-Type": "application/json",
       },
     });
   };
