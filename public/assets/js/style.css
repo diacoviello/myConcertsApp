@@ -1,14 +1,22 @@
+body {
+  background-color: #546e7a;
+  overflow: hidden;
+}
+
+.scroll-container {
+  overflow: hidden;
+}
+
 header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../images/MSG_SEA.jpg");
-  height: 300px;
+  height: 250px;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   justify-content: center;
-  margin-bottom: 25px;
   font-family: "Abril Fatface";
 }
 
@@ -18,8 +26,49 @@ header h1 {
   padding: 100px 0;
 }
 
+#logo {
+  display: inline;
+  color: white;
+  font-size: 35px;
+  padding: 10px;
+}
+
+#subheader {
+  margin: 0px;
+}
+
+#addArtist {
+  padding: 15px;
+}
+
+#artistImg {
+  margin-right: 10%;
+}
+
+#card-reveal-text {
+  line-height: 2;
+  font-family: "Abril Fatface";
+}
+
+/* #search-input {
+  margin-top: 20px;
+} */
+
+#reveal-card {
+  padding: 25px;
+}
+
+/* #searchAgainBtn {
+  margin-top: 25px;
+} */
+
+#upcoming-shows-card {
+  align-self: center;
+}
+
 body {
   font-family: "Abril Fatface";
+  width: 100%;
 }
 
 .btn {
@@ -30,4 +79,62 @@ body {
 
 .bieber {
   text-align: center;
+}
+
+/* #search-form {
+  margin: auto;
+  align-items: center;
+} */
+
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
+/* Other styles */
+section {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darkorchid;
+}
+
+section:nth-child(2n) {
+  background-color: turquoise;
+}
+
+section:nth-child(3n) {
+  background-color: tomato;
+}
+
+#tag {
+  float: right;
+  position: absolute;
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+#card-img {
+  border: 1px solid #dddddd;
+  position: relative;
+}
+
+#main-container {
+  align-content: center;
+  margin: auto;
+}
+
+#form-container {
+  align-content: center;
+  margin-top: -65px;
 }

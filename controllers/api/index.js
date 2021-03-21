@@ -1,10 +1,10 @@
 const router = require("express").Router();
-
-// const homeRoutes = require("./home-routes");
+const userRoutes = require("./userRoutes");
+// const artistRoutes = require("./artistRoutes");
 const eventRoutes = require("./eventRoutes");
 
-// router.use("/user", userRoutes);
-router.use("/event", eventRoutes);
+router.use("/users", userRoutes);
+// router.use("/artists", artistRoutes);
+router.use("/events", eventRoutes);
 
 module.exports = router;
-
