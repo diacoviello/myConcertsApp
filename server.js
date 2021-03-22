@@ -31,13 +31,14 @@ const sess = {
   //   db: sequelize,
   // }),
 };
+
 app.use(routes);
 // app.use(session(sess));
 
 
-app.use("/api", artistRoutes);
-app.use("/api", eventRoutes);
-app.use("/api", userRoutes);
+// app.use("/api", artistRoutes);
+// app.use("/api", eventRoutes);
+// app.use("/api", userRoutes);
 app.use("/", homeRoutes);
 
 sequelize.sync({ force: false }).then(() => {

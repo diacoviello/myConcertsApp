@@ -123,7 +123,7 @@ async function getArtists() {
 
 }
 
-async function handleSearchFormSubmit(event) {
+function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var artistText = document.querySelector("#add-artist").value;
@@ -137,15 +137,14 @@ async function handleSearchFormSubmit(event) {
   artistListEl.append(artistText);
   console.log(artistListEl);
 
+  
   // Add new cityText to cities array, clear the input
   if (!artists.includes(artistText)) {
     artists.push(artistText);
-    return;
   }
   // cityInput.value = "";
 
   console.log(artistText);
-
   // function addArtist() {
   //   fetch("/api/artists", {
   //     method: "POST",
@@ -156,14 +155,12 @@ async function handleSearchFormSubmit(event) {
   //   // renderArtists();
   // }
 
-  var artistObj = artistText;
+  var artistObj = {artist_name: artistText};
   console.log(artistObj);
 
-  await fetch("/api/artists", {
+  fetch("/api/artists", {
     method: "POST",
-    body: {
-      artist_name: JSON.stringify(artistObj),
-    },
+    body: JSON.stringify(artistObj),
     headers: {
       "Content-Type": "application/json",
     },
@@ -175,6 +172,7 @@ async function handleSearchFormSubmit(event) {
     .catch((error) => {
       console.error("Error:", error);
     });
+
 }
 
 searchArtistEl.addEventListener("search", handleSearchFormSubmit);

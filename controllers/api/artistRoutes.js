@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Artist } = require("../../models");
 
 router.get("/", (req, res) => {
+  console.log("GET /");
   Artist.findAll({
     // attributes: { exclude: ["[password"] },
   })
@@ -14,6 +15,7 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   console.log(req.body);
+  console.log('POST /api/post');
 
   await Artist.create({
     // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
