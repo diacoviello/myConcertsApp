@@ -138,3 +138,20 @@ section:nth-child(3n) {
   align-content: center;
   margin-top: -65px;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  color: #588c7e;
+  font-family: monospace;
+  font-size: 25px;
+  text-align: left;
+}
+
+th {
+  background-color: #588c7e;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

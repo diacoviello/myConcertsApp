@@ -1,10 +1,11 @@
 const path = require("path");
+const php = require("php");
 const express = require("express");
 const session = require("express-session");
 // Initializes Sequelize with session store
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const homeRoutes = require("./controllers/home-routes");
-// const artistRoutes = require("./controllers/api/artistRoutes");
+const artistRoutes = require("./controllers/api/artistRoutes");
 const eventRoutes = require("./controllers/api/eventRoutes");
 const userRoutes = require("./controllers/api/userRoutes");
 const sequelize = require("./config/connection");
@@ -34,7 +35,7 @@ app.use(routes);
 // app.use(session(sess));
 
 
-// app.use("/api", artistRoutes);
+app.use("/api", artistRoutes);
 app.use("/api", eventRoutes);
 app.use("/api", userRoutes);
 app.use("/", homeRoutes);
