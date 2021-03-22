@@ -22,10 +22,17 @@ function getParams() {
 function printResults(resultObj) {
   console.log(resultObj);
 
+<<<<<<< HEAD
   var artist = resultObj.artist.name;
   console.log(artist);
 
   resultTextEl.textContent = resultObj.artist.name;
+=======
+  var artist = resultObj.lineup[0];
+  console.log(artist);
+
+  resultTextEl.textContent = resultObj.lineup[0];
+>>>>>>> 6f74116fed82c4d0fb9ac4d14904820a223bd0f8
 
   // set up `<div>` to hold result content
   var resultCard = document.createElement("div");
@@ -159,7 +166,11 @@ function printResults(resultObj) {
     };
     console.log(obj);
 
+<<<<<<< HEAD
     await fetch("/api/events", {
+=======
+    await fetch("/api/event", {
+>>>>>>> 6f74116fed82c4d0fb9ac4d14904820a223bd0f8
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
