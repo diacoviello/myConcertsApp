@@ -1,11 +1,3 @@
-// const mysql = require("mysql");
-// const artistData = require("../../../controllers/api/artistRoutes");
-// const eventData = require("../../../controllers/api/eventRoutes");
-// const userData = require("../../../controllers/api/userRoutes");
-// const connection = require("../../../config/connection");
-
-// const { query } = require("express");
-
 var artistInput = document.querySelector("#search-artist");
 var searchArtistEl = document.querySelector("#search-artist");
 var artistListEl = document.querySelector("#artist-list");
@@ -28,7 +20,12 @@ async function getShows() {
       "mb-3",
       "p-3"
     );
+    var cardId = document.createElement("p");
+    cardId.textContent = `${item.id}`;
+    cardId.classList.add("card-id");
+    cardId.style.display = "none";
 
+    console.log(`${item.id}`);
     var resultBody = document.createElement("div");
     resultBody.classList.add("card-body");
     resultCard.append(resultBody);
@@ -44,17 +41,16 @@ async function getShows() {
     // showDate.setAttribute("class", "event_date");
     console.log(showDate);
 
-    // var bodyContentEl = document.createElement("p");
     var dateEl = document.createElement("p");
     dateEl.setAttribute("class", "date-details");
-    dateEl.innerHTML = "<strong>Date: </strong>" + showDate + "<br />";
+    dateEl.innerHTML = showDate;
     var timeEl = document.createElement("p");
     timeEl.setAttribute("class", "time-details");
-    timeEl.innerHTML = "<strong>Time: </strong>" + showTime + "<br />";
+    timeEl.innerHTML = showTime;
 
     var locationEl = document.createElement("p");
     locationEl.setAttribute("class", "loc-details");
-    locationEl.innerHTML = "Location:" + `${item.location}` + "<br/>";
+    locationEl.innerHTML = `${item.location}`;
     console.log(`${item.location}`);
 
     var linkButtonEl = document.createElement("a");
@@ -67,8 +63,39 @@ async function getShows() {
     console.log(`${item.event_url}`);
 
     resultContentEl.append(resultCard);
+    var deleteBtn = document.createElement("a");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.classList.add("btn-large", "btn-dark");
+    deleteBtn.addEventListener("click", deleteEvent);
+    deleteBtn.addEventListener("click", deleteCard);
+    console.log("its working!!!");
 
-    resultBody.append(titleEl, dateEl, timeEl, locationEl, linkButtonEl);
+    resultBody.append(
+      titleEl,
+      dateEl,
+      timeEl,
+      locationEl,
+      linkButtonEl,
+      deleteBtn,
+      cardId
+    );
+  }
+
+  function deleteCard() {
+    var hideCard = $(this).parent(".card-body").parent(".card-panel")[0];
+    if (hideCard.style.display === "none") {
+      hideCard.style.display = "block";
+    } else {
+      hideCard.style.display = "none";
+    }
+  }
+  async function deleteEvent() {
+    var id = $(this).siblings(".card-id")[0].textContent;
+    console.log(id);
+
+    await fetch(`/api/events/${id}`, {
+      method: "DELETE",
+    });
   }
 }
 
@@ -102,7 +129,7 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var artistText = document.querySelector("#add-artist").value;
-
+  console.log(artistText);
   // Return from function early if submitted citytext is blank
   if (artistText === "") {
     return;
@@ -110,10 +137,12 @@ function handleSearchFormSubmit(event) {
 
   // // print to the page
   artistListEl.append(artistText);
+  console.log(artistListEl);
 
   // Add new cityText to cities array, clear the input
-  if (!artist.includes(artistText)) {
-    artist.push(artistText);
+  if (!artists.includes(artistText)) {
+    artists.push(artistText);
+    return;
   }
   // cityInput.value = "";
 
@@ -130,6 +159,7 @@ function handleSearchFormSubmit(event) {
   // }
 
   var artistObj = artistText.textContent;
+  console.log(artistObj);
 
   fetch("/api/artists", {
     method: "POST",
@@ -138,7 +168,6 @@ function handleSearchFormSubmit(event) {
       "Content-Type": "application/json",
     },
   });
-
 }
 
 searchArtistEl.addEventListener("search", handleSearchFormSubmit);
