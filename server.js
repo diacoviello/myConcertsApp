@@ -5,7 +5,7 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const homeRoutes = require("./controllers/home-routes");
 const eventRoutes = require("./controllers/api/eventRoutes");
-// const userRoutes = require("./controllers/api/user-routes");
+const userRoutes = require("./controllers/api/userRoutes");
 const sequelize = require("./config/connection");
 const routes = require("./controllers");
 
@@ -35,7 +35,7 @@ app.use(session(sess));
 app.use(routes);
 
 app.use("/api", eventRoutes);
-// app.use("/api", userRoutes);
+app.use("/api", userRoutes);
 app.use("/", homeRoutes);
 
 sequelize.sync({ force: false }).then(() => {
