@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
 
-  Artist.create({
+  await Artist.create({
     // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
     artist_name: req.body.artist_name,
     //   user_id: req.session.user_id,
@@ -26,19 +26,6 @@ router.post("/", async (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-
-  // try {
-  //   const newArtist = await Artist.create({
-  //     // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
-  //     artist_name: req.body.artist_name,
-  //     //   user_id: req.session.user_id,
-  //     // TODO: SET USERID TO LOGGEDIN USERID
-  //   });
-  //   res.json(newArtist);
-  // } catch (err) {
-  //   console.log(err);
-  //   res.status(500).json(err);
-  // }
 });
 
 router.post("/login", async (req, res) => {
