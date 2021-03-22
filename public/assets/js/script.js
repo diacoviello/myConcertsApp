@@ -114,6 +114,14 @@ function printResults(resultObj) {
   console.log(dataLat);
   console.log(dataLong);
 
+    var openWin = "https://www.google.com/maps/search/?api=1&query=" +
+        dataLat +
+        "," +
+        dataLong;
+        console.log(openWin);
+
+    var openWin = `${openWin}`;
+
   function getDirections() {
     var longRet = dataLong;
     var latRet = dataLat;
@@ -156,6 +164,7 @@ function printResults(resultObj) {
       date: showDate,
       time: showTime,
       event_url: eventUrl,
+      directions_url: openWin,
     };
     console.log(obj);
 

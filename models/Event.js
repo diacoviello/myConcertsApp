@@ -35,6 +35,9 @@ Event.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    directions_url: {
+      type: DataTypes.STRING,
+    }
   },
   {
     sequelize,

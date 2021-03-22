@@ -70,6 +70,21 @@ async function getShows() {
     deleteBtn.addEventListener("click", deleteCard);
     console.log("its working!!!");
 
+    var directionsBtn = document.createElement("a");
+    directionsBtn.textContent = "Directions";
+    directionsBtn.setAttribute("href", `${item.directions_url}`);
+    directionsBtn.classList.add("btn-large", "btn-dark");
+    directionsBtn.setAttribute("target", "_blank");
+
+    resultContentEl.append(resultCard);
+
+    function getDirections() {
+      window.open(
+        `${item.directions_url}`,
+        "_blank"
+      );
+    }
+
     resultBody.append(
       titleEl,
       dateEl,
@@ -77,6 +92,7 @@ async function getShows() {
       locationEl,
       linkButtonEl,
       deleteBtn,
+      directionsBtn,
       cardId
     );
   }
