@@ -22,10 +22,10 @@ function getParams() {
 function printResults(resultObj) {
   console.log(resultObj);
 
-  var artist = resultObj.artist.name;
+  var artist = resultObj.lineup[0];
   console.log(artist);
 
-  resultTextEl.textContent = resultObj.artist.name;
+  resultTextEl.textContent = resultObj.lineup[0];
 
   // set up `<div>` to hold result content
   var resultCard = document.createElement("div");
