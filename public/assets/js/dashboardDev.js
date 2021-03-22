@@ -1,6 +1,7 @@
 var artistInput = document.querySelector("#search-input");
 var searchArtistEl = document.querySelector("#search-artist");
 var artistListEl = document.querySelector("#artist-list");
+var resultContentEl = document.querySelector("#result-content");
 var artists = [];
 var events = [];
 
@@ -12,8 +13,6 @@ async function getShows() {
   for (item  of data) {
     var resultCard = document.createElement("div");
     resultCard.classList.add(
-      "col",
-      "s2",
       "card-panel",
       "hoverable",
       "light-blue",
@@ -86,7 +85,7 @@ async function getShows() {
     // directionsBtn.classList.add("btn-large", "btn-dark");
     // directionsBtn.setAttribute("target", "_blank");
   
-    // resultContentEl.append(resultCard);
+    resultContentEl.append(resultCard);
     // console.log(resultObj.venue.longitude);
   
 
