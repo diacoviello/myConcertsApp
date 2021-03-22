@@ -31,7 +31,7 @@ async function getShows() {
     resultCard.append(resultBody);
 
     var titleEl = document.createElement("h3");
-    titleEl.textContent = `${item.venue_name}`;
+    titleEl.textContent = `${item.artist_name}` + " @ " + `${item.venue_name}`;
     titleEl.setAttribute("class", "venue_name");
 
     var showTime = `${item.time}`;
