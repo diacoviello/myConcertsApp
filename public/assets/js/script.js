@@ -68,7 +68,7 @@ function printResults(resultObj) {
   locationEl.setAttribute("class", "loc-details");
   if (resultObj.venue.location) {
     locationEl.innerHTML +=
-      "Location:" + resultObj.venue.location + "<br/>"; //.join(', ') +
+      "Location: " + resultObj.venue.location + "<br/>"; //.join(', ') +
   } else {
     locationEl.innerHTML +=
       "Subjects: No subject for this entry.";

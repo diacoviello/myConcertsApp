@@ -6,11 +6,10 @@ var artists = [];
 var events = [];
 
 async function getShows() {
-
-  const response = await fetch('/api/event');
+  const response = await fetch("/api/event");
   const data = await response.json();
 
-  for (item  of data) {
+  for (item of data) {
     var resultCard = document.createElement("div");
     resultCard.classList.add(
       "card-panel",
@@ -21,57 +20,61 @@ async function getShows() {
       "mb-3",
       "p-3"
     );
-  
+      var cardId = document.createElement("p");
+     cardId.textContent = `${item.id}`;
+   cardId.classList.add("card-id");
+     cardId.style.display = "none";
+
+
+      console.log(`${item.id}`);
     var resultBody = document.createElement("div");
     resultBody.classList.add("card-body");
     resultCard.append(resultBody);
-  
+
     var titleEl = document.createElement("h3");
     titleEl.textContent = `${item.venue_name}`;
     titleEl.setAttribute("class", "venue_name");
-  
+
     var showTime = `${item.time}`;
     console.log(showTime);
     // showTime.setAttribute("class", "event_time");
-    var showDate = `${item.date}`
+    var showDate = `${item.date}`;
     // showDate.setAttribute("class", "event_date");
     console.log(showDate);
-  
+
     // var bodyContentEl = document.createElement("p");
     var dateEl = document.createElement("p");
     dateEl.setAttribute("class", "date-details");
-    dateEl.innerHTML = "<strong>Date: </strong>" + showDate + "<br />";  
+    dateEl.innerHTML = showDate;
     var timeEl = document.createElement("p");
     timeEl.setAttribute("class", "time-details");
-    timeEl.innerHTML = "<strong>Time: </strong>" + showTime + "<br />";
-  
+    timeEl.innerHTML = showTime;
+
     var locationEl = document.createElement("p");
     locationEl.setAttribute("class", "loc-details");
-    locationEl.innerHTML = "Location:" + `${item.location}` + "<br/>";
-    console.log(`${item.location}`)
-   
-  
+    locationEl.innerHTML = `${item.location}`;
+    console.log(`${item.location}`);
+
     // var longRet = parseFloat(dataLong);
     // var latRet = parseFloat(dataLat);
     // console.log(longRet);
     // console.log(latRet);
-  
+
     // write frunction to grab location in google api to map out lat long
     // var mapsLink = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
-  
+
     // mapsLink = mapsLink + latRet + "," + longRet + "&key=" + myKey;
     // console.log(mapsLink);
-  
+
     var linkButtonEl = document.createElement("a");
     linkButtonEl.textContent = "Read More";
     linkButtonEl.setAttribute("href", `${item.event_url}`);
     linkButtonEl.setAttribute("class", "eventUrl");
     linkButtonEl.classList.add("btn-large", "btn-dark");
-  
-    linkButtonEl.setAttribute("target", "_blank");
-    console.log(`${item.event_url}`)
 
-  
+    linkButtonEl.setAttribute("target", "_blank");
+    console.log(`${item.event_url}`);
+
     // var directionsBtn = document.createElement("a");
     // directionsBtn.textContent = "Directions";
     // directionsBtn.setAttribute(
@@ -84,28 +87,57 @@ async function getShows() {
     // );
     // directionsBtn.classList.add("btn-large", "btn-dark");
     // directionsBtn.setAttribute("target", "_blank");
-  
+
     resultContentEl.append(resultCard);
     // console.log(resultObj.venue.longitude);
+    var deleteBtn = document.createElement("a");
+    deleteBtn.textContent = "Delete";
+    //send event information to user's database
+    // rsvpBtn.setAttribute("href", resultObj.url);
+    deleteBtn.classList.add("btn-large", "btn-dark");
+    deleteBtn.addEventListener("click", deleteEvent);
+    deleteBtn.addEventListener("click", deleteCard);
+    console.log("its working!!!");
   
+    
+    resultBody.append(
+      titleEl,
+      dateEl,
+      timeEl,
+      locationEl,
+      linkButtonEl,
+      // directionsBtn,
+      deleteBtn,
+      cardId
 
+    );
   }
 
-  resultBody.append(
-    titleEl,
-    dateEl,
-    timeEl,
-    locationEl,
-    linkButtonEl,
-    // directionsBtn,
-    // rsvpBtn
-  );
+  function deleteCard() {
+    var hideCard = $(this).parent(".card-body").parent(".card-panel")[0]
+    if (hideCard.style.display === "none") {
+      hideCard.style.display = "block";
+    } else {
+      hideCard.style.display = "none";
+    }
+  }
+  async function deleteEvent() {
+    var id = $(this).siblings(".card-id")[0].textContent;
+    console.log(id);
+
+   
+    await fetch(`/api/event/${id}`, {
+      method: 'DELETE'
+      
+    });
+ 
+  }
 }
-    // $.get("/api/event", function(data) {
-    //     events = data
-    // } )
 
 
+// $.get("/api/event", function(data) {
+//     events = data
+// } )
 
 // function handleSearchFormSubmit(event) {
 //   event.preventDefault();
@@ -193,8 +225,6 @@ async function getShows() {
 //     });
 // }
 
-
-
 // searchArtistEl.addEventListener("search", handleSearchFormSubmit);
 // console.log(searchArtistEl);
-getShows()
+getShows();
