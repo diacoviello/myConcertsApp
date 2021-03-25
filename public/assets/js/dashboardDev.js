@@ -70,19 +70,16 @@ async function getShows() {
     deleteBtn.addEventListener("click", deleteCard);
     console.log("its working!!!");
 
-    var directionsBtn = document.createElement("a");
-    directionsBtn.textContent = "Directions";
-    directionsBtn.setAttribute("href", `${item.directions_url}`);
-    directionsBtn.classList.add("btn-large", "btn-dark");
-    directionsBtn.setAttribute("target", "_blank");
+    // var directionsBtn = document.createElement("a");
+    // directionsBtn.textContent = "Directions";
+    // directionsBtn.setAttribute("href", `${item.directions_url}`);
+    // directionsBtn.classList.add("btn-large", "btn-dark");
+    // directionsBtn.setAttribute("target", "_blank");
 
     resultContentEl.append(resultCard);
 
     function getDirections() {
-      window.open(
-        `${item.directions_url}`,
-        "_blank"
-      );
+      window.open(`${item.directions_url}`, "_blank");
     }
 
     resultBody.append(
@@ -92,7 +89,6 @@ async function getShows() {
       locationEl,
       linkButtonEl,
       deleteBtn,
-      directionsBtn,
       cardId
     );
   }
@@ -130,13 +126,12 @@ async function getArtists() {
       "mb-3",
       "p-3"
     );
-    var artistEl = document.createElement("h3");
+    var artistEl = document.createElement("h4");
     artistEl.textContent = `${item.artist_name}`;
     artistEl.setAttribute("class", "artist_name");
 
     artistListEl.append(artistEl);
-  };
-
+  }
 }
 
 function handleSearchFormSubmit(event) {
@@ -153,7 +148,6 @@ function handleSearchFormSubmit(event) {
   artistListEl.append(artistText);
   console.log(artistListEl);
 
-  
   // Add new cityText to cities array, clear the input
   if (!artists.includes(artistText)) {
     artists.push(artistText);
@@ -171,7 +165,7 @@ function handleSearchFormSubmit(event) {
   //   // renderArtists();
   // }
 
-  var artistObj = {artist_name: artistText};
+  var artistObj = { artist_name: artistText };
   console.log(artistObj);
 
   fetch("/api/artists", {
@@ -188,7 +182,6 @@ function handleSearchFormSubmit(event) {
     .catch((error) => {
       console.error("Error:", error);
     });
-
 }
 
 searchArtistEl.addEventListener("search", handleSearchFormSubmit);
@@ -196,46 +189,4 @@ console.log(searchArtistEl);
 
 getShows();
 getArtists();
-
-// function renderArtists() {
-//   // Clear cityList element and update userCityRes
-//   artistListEl.innerHTML = "";
-
-//   // Render a new li for each city
-//   for (var i = 0; i < artists.length; i++) {
-//     const artist = artists[i];
-
-//     var li = document.createElement("li");
-//     var button = document.createElement("button");
-//     button.textContent = artist;
-//     button.className = "artist-btn";
-//     // button.setAttribute("artist-index", i);
-//     li.appendChild(button);
-
-//     button.addEventListener("click", addArtist());
-
-//     artistListEl.appendChild(li);
-//   }
-// }
-
-// function searchApi(query) {
-//   var locQueryUrl = "https://rest.bandsintown.com/v4/artists";
-
-//   locQueryUrl = locQueryUrl + query + "events/?app_id=" + BIT_KEY;
-//   console.log(locQueryUrl);
-
-//   fetch(locQueryUrl)
-//     .then(function (response) {
-//       console.log(response);
-//       if (!response.ok) {
-//         throw response.json();
-//       }
-//       return response.json();
-//     })
-
-//     .catch(function (error) {
-//       console.error(error);
-//     });
-// }
-
 

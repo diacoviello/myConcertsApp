@@ -12,22 +12,38 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/api/users", async (req, res) => {
   console.log(req.body);
-  try {
-    const newUser = await User.create({
-      // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
-      email: req.body.email,
-      password: req.body.password,
-      //   user_id: req.session.user_id,
-      // TODO: SET USERID TO LOGGEDIN USERID
+  console.log("POST /api/users");
+
+  await User.create({
+    // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
+    email: req.body.email,
+    password: req.body.password,
+    //   user_id: req.session.user_id,
+    // TODO: SET USERID TO LOGGEDIN USERID
+  })
+    .then((dbUserData) => res.json(dbUserData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-    res.json(newUser);
+
+  // console.log(req.body);
+  // try {
+  //   const newUser = await User.create({
+  //     // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD
+  //     email: req.body.email,
+  //     password: req.body.password,
+  //     //   user_id: req.session.user_id,
+  //     // TODO: SET USERID TO LOGGEDIN USERID
+  //   });
+  //   res.json(newUser);
     
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
+  // } catch (err) {
+  //   console.log(err);
+  //   res.status(500).json(err);
+  // }
 });
 
 router.post('/login', async (req, res) => {
