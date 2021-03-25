@@ -1,5 +1,5 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Sequelize, Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 // TODO: YOUR CODE HERE
 class Event extends Model {}
@@ -35,9 +35,6 @@ Event.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    directions_url: {
-      type: DataTypes.STRING,
-    }
   },
   {
     sequelize,
